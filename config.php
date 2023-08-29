@@ -6,6 +6,7 @@ $vulhub_path = '/var/www/html/vulhub';
 
 //默认主机
 $ip = "192.168.120.128";
+$port = '80';
 
 //默认数据库名
 $db_name = 'vulhub';
@@ -13,6 +14,7 @@ $db_name = 'vulhub';
 //默认数据库密码
 $db_pass = "root";
 
+$path = '';
 //默认主页
 $index = "vulhub.php";
 
