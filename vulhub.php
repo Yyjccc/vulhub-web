@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php
-header("Referer: https://www.cnblogs.com/zovt");
-header("Orign: https://www.cnblogs.com/zovt");
+include('config.php');
 ?>
+
 <html lang="zh-cn">
 
 <head>
@@ -179,7 +179,9 @@ header("Orign: https://www.cnblogs.com/zovt");
                 <div class='timectl'>
                     <span class='tit'>剩余时间--10s</span>
                     <progress value="0" max="100" id="pbar"></progress>
-                    <a class='resport' target="_black">192.168.120.128:80</a>
+                    <a class='resport' target="_black">
+                        <?php echo $ip ?>:80
+                    </a>
                 </div>
                 <div class='ctl'>
                     <button class="button-82-pushable" role="button" id='start' onclick='beginenv()'>
@@ -225,7 +227,7 @@ header("Orign: https://www.cnblogs.com/zovt");
                 var portres = document.querySelector('.resport');
                 var timer;
                 const total = 1000;
-                const url = 'http://192.168.120.128/vm-share/docker.php';
+                const url = 'http://<?php echo $ip + $port . '/' . $docker ?>';
                 window.leaftime = 1000;
                 //功能实现函数
                 function updatetime() {
@@ -278,8 +280,8 @@ header("Orign: https://www.cnblogs.com/zovt");
                             var js = JSON.parse(res); // 转化为JS对象
                             if (js['code'] == '200') {
                                 alert(js['port']);
-                                portres.href = 'http://192.168.120.128' + js['port'];
-                                portres.innerHTML = 'http://192.168.120.128' + js['port'];
+                                portres.href = 'http://<?php echo $ip ?>' + js['port'];
+                                portres.innerHTML = 'http://<?php echo $ip; ?>' + js['port'];
                                 portres.style.display = 'block';
                             }
                         }
@@ -328,14 +330,14 @@ header("Orign: https://www.cnblogs.com/zovt");
             <div class="list">
                 <?php
                 if (isset($_GET['dir'])) {
-                    echo '<span class="item" onclick="' . "location.href='http://192.168.120.128/vm-share/vulhub.php'" . '">返回上层</span></a>';
+                    echo '<span class="item" onclick="' . "location.href='http://$ip" . $path + $index . '">返回上层</span></a>';
                     $dir = $_GET['dir'];
                     if ($dir != '') {
-                        if (!preg_match('/' . $dir . '/', shell_exec('ls /var/www/html/vulhub' . ' 2>&1'))) {
-                            echo "<script>alert('no-dir'); location.href = 'http://192.168.120.128/vm-share/vulhub.php'</script>";
+                        if (!preg_match('/' . $dir . '/', shell_exec("ls $vulhub_path" . ' 2>&1'))) {
+                            echo "<script>alert('no-dir'); location.href = 'http://$ip/" . $path + $index . "'</script>";
                             exit();
                         }
-                        $output = shell_exec('ls /var/www/html/vulhub/' . $dir . ' 2>&1');
+                        $output = shell_exec("ls $vulhub_path/" . $dir . ' 2>&1');
                         $dirarr = explode("\n", $output);
                         $dirarr = array_filter($dirarr);
                         foreach ($dirarr as $k) {
@@ -350,7 +352,7 @@ header("Orign: https://www.cnblogs.com/zovt");
 
                     }
                 } else {
-                    $output = shell_exec('ls /var/www/html/vulhub' . ' 2>&1');
+                    $output = shell_exec("ls $vulhub_path" . ' 2>&1');
                     $arr = explode("\n", $output);
                     $arr = array_filter($arr);
                     $fiterarr = array(

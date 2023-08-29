@@ -1,4 +1,5 @@
 <?php
+include("config.php");
 $data = array('code' => '500', 'status' => 'erro');
 session_start();
 function token()
@@ -10,6 +11,8 @@ function token()
 }
 class Docker
 {
+    
+    public $vulhub_path=global $vulhub_path;
     public $runcmd = 'docker ps';
     public function checkrun($testname)
     {
@@ -21,9 +24,9 @@ class Docker
             return false;
         }
     }
-    public function start_contain($path, $name)
+    public function start_contain($path, $name,$vulhub_path=$this->vulhub_path)
     {
-        $cmd = "cd /var/www/html/vulhub/$path/" . $name . ";sudo  docker-compose build;sudo docker-compose up -d";
+        $cmd = "cd $vulhub_path/$path/" . $name . ";sudo  docker-compose build;sudo docker-compose up -d";
         $output = shell_exec($cmd . ' 2>&1');
         $realname = preg_replace('/CVE/', 'cve', $name);
         if (!preg_match("/$realname/", $output)) {
@@ -40,9 +43,9 @@ class Docker
         }
         return $matches;
     }
-    public function stop_contain($path, $name)
+    public function stop_contain($path, $name,$vulhub_path = $this->vulhub_path)
     {
-        $cmd = "cd /var/www/html/vulhub/$path/" . $name . ';sudo docker-compose down -v';
+        $cmd = "cd $vulhub_path/$path/" . $name . ';sudo docker-compose down -v';
         $output = shell_exec($cmd . ' 2>&1');
         return preg_match("/WARNING/", $output);
     }
