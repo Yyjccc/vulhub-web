@@ -1,0 +1,272 @@
+* {
+    z-index: 4;
+}
+
+.item {
+    display: flex;
+    margin: 10px auto;
+    padding: 20px;
+    font-size: 24px;
+    font-family: "Noto Sans SC";
+    font-weight: 500;
+    background-color: #f1f4f9;
+    color: #7f8c93;
+    box-shadow: 0 15px 18px -6px #7f8c93;
+    float: left;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.list {
+    display: block;
+    width: 80%;
+    margin-top: 100px;
+    position: absolute;
+    height: 3300px;
+}
+
+.list span {
+    width: 130px;
+    height: 80px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-wrap: break-word;
+}
+
+.list ::after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.list span:hover {
+    background-color: #dff1ff;
+    opacity: .9;
+    box-shadow: 0 0px 3px 4px rgba(160, 161, 167, 0.6);
+    -webkit-box-shadow: 0 0px 3px 4px rgba(167, 169, 176, 0.6);
+    -moz-box-shadow: 0 0px 3px 4px rgba(176, 178, 186, 0.6);
+    -o-box-shadow: 0 0px 3px 4px rgba(206, 207, 213, 0.6);
+    -ms-box-shadow: 0 0px 3px 4px rgba(202, 204, 213, 0.6);
+    -webkit-transition: all .25s linear;
+    -moz-transition: all .25s linear;
+    -ms-transition: all .25s linear;
+    -o-transition: all .25s linear;
+    transition: all .25s linear;
+    cursor: pointer;
+}
+
+/* 弹窗 */
+.modal {
+    display: none;
+    position: fixed;
+    background: white;
+    float: left;
+    z-index: 10;
+    margin: 50px;
+    top: 2px;
+    width: 33%;
+    height: 65%;
+    margin-left: 5%;
+}
+
+/* 显示倒计时*/
+.timectl {
+    display: none;
+    position: relative;
+    top: 60px;
+    left: 130px;
+    font-size: 22px;
+
+}
+
+.tit {
+    float: left;
+    position: absolute;
+    left: 37px;
+}
+
+#pbar {
+    float: left;
+    position: absolute;
+    top: 30px;
+}
+
+.resport {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: -10px;
+    font-size: 20px;
+}
+
+s .modal hr {
+    width: 80%;
+    margin-left: 50px;
+    background-color: #111111;
+}
+
+#close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+    cursor: pointer;
+
+}
+
+.modal h1,
+h2,
+h3 {
+    text-align: center !important;
+    padding-top: 2.5rem !important;
+    font-family: "Raleway", "RalewayOffline", sans-serif;
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-size: 2rem;
+    margin-bottom: .5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit;
+}
+
+.ctl {
+    position: relative;
+    top: 145px;
+    padding: 30px;
+}
+
+.mask {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 7;
+}
+
+
+.button-82-pushable {
+    position: relative;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+    transition: filter 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-82-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: hsl(0deg 0% 0% / 0.25);
+    will-change: transform;
+    transform: translateY(2px);
+    transition:
+        transform 600ms cubic-bezier(.3, .7, .4, 1);
+}
+
+.button-82-edge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: linear-gradient(to left,
+            hsl(340deg 100% 16%) 0%,
+            hsl(340deg 100% 32%) 8%,
+            hsl(340deg 100% 32%) 92%,
+            hsl(340deg 100% 16%) 100%);
+}
+
+.button-82-front {
+    display: block;
+    position: relative;
+    padding: 12px 27px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    color: white;
+    background: hsl(345deg 100% 47%);
+    will-change: transform;
+    transform: translateY(-4px);
+    transition:
+        transform 600ms cubic-bezier(.3, .7, .4, 1);
+}
+
+@media (min-width: 768px) {
+    .button-82-front {
+        font-size: 1.25rem;
+        padding: 16px 16px;
+    }
+}
+
+.button-82-pushable:hover {
+    filter: brightness(110%);
+    -webkit-filter: brightness(110%);
+}
+
+.button-82-pushable:hover .button-82-front {
+    transform: translateY(-6px);
+    transition:
+        transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.button-82-pushable:active .button-82-front {
+    transform: translateY(-2px);
+    transition: transform 34ms;
+}
+
+.button-82-pushable:hover .button-82-shadow {
+    transform: translateY(4px);
+    transition:
+        transform 250ms cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.button-82-pushable:active .button-82-shadow {
+    transform: translateY(1px);
+    transition: transform 34ms;
+}
+
+.button-82-pushable:focus:not(:focus-visible) {
+    outline: none;
+}
+
+#start {
+    position: absolute;
+    left: 170px;
+    top: 45px;
+}
+
+#delay {
+    position: absolute;
+    left: 170px;
+    top: 45px;
+    display: none;
+}
+
+#stop {
+    position: absolute;
+    top: 135px;
+    left: 170px;
+
+}
