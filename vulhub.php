@@ -230,7 +230,7 @@ include('config.php');
                 var portres = document.querySelector('.resport');
                 var timer;
                 const total = 1000;
-                const url = 'http://<?php echo $ip + $port . '/' . $docker ?>';
+                const url = ' <?php echo "./" . $dockerfile ?>';
                 window.leaftime = 1000;
                 //功能实现函数
                 function updatetime() {
@@ -333,11 +333,11 @@ include('config.php');
             <div class="list">
                 <?php
                 if (isset($_GET['dir'])) {
-                    echo '<span class="item" onclick="' . "location.href='http://$ip" . $path + $index . '">返回上层</span></a>';
+                    echo '<span class="item" onclick="' . "location.href='http://$ip" . $web_path . $index . "'" . '">返回上层</span></a>';
                     $dir = $_GET['dir'];
                     if ($dir != '') {
                         if (!preg_match('/' . $dir . '/', shell_exec("ls $vulhub_path" . ' 2>&1'))) {
-                            echo "<script>alert('no-dir'); location.href = 'http://$ip/" . $path + $index . "'</script>";
+                            echo "<script>alert('no-dir'); location.href = 'http://$ip" . '/' . $web_path + $index . "'</script>";
                             exit();
                         }
                         $output = shell_exec("ls $vulhub_path/" . $dir . ' 2>&1');

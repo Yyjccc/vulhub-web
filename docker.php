@@ -123,7 +123,7 @@ function del($con, $id)
     $sql = 'delete from timer where id=' . $id;
     return mysqli_query($con, $sql);
 }
-if ($wad) {
+if ($waf) {
     if (isset($_COOKIE['token'])) {
         if ($_COOKIE['token'] != $_SESSION['token']) {
             $data['status'] = 'hacker!';

@@ -35,7 +35,7 @@ define('DB_NAME', db_name);
 
 //网站文件配置
 /////////////////////////////////
-$web_path = '';
+$web_path = '/vm-share/';
 //默认主页
 $index = "vulhub.php";
 
