@@ -6,14 +6,17 @@ include('config.php');
 <html lang="zh-cn">
 
 <head>
+
     <meta charset="utf-8" />
+    <meta name="referrer" content=“no-referrer”>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="referrer" content="origin-when-cross-origin" />
+    <!-- <meta name="referrer" content="origin-when-cross-origin" /> -->
     <meta http-equiv="Cache-Control" content="no-transform" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Vulhub靶场</title>
-    <link id="favicon" rel="shortcut icon" href="//common.cnblogs.com/favicon.svg" type="image/svg+xml" />
+    <!-- 网站头标 -->
+    <!-- <link id="favicon" rel="shortcut icon" href="https://common.cnblogs.com/favicon.svg" type="image/svg+xml" /> -->
     <link type="text/css" rel="stylesheet" href="./vcss/custom.css" />
     <link type="text/css" rel="stylesheet" href="./vcss/add.css" />
     <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/zovt/rss" />

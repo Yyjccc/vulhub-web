@@ -28,7 +28,7 @@ class ThumbsUpAni {
             const p = new Promise(function (resolve) {
                 const img = new Image;
                 img.onerror = img.onload = resolve.bind(null, img);
-                img.src = 'https://images.cnblogs.com/cnblogs_com/miluluyo/1765646/' + src;
+                img.src = './img/' + src;
             });
             promiseAll.push(p);
         });

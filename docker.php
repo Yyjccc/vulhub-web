@@ -11,9 +11,14 @@ function token()
 }
 class Docker
 {
-    
-    public $vulhub_path=global $vulhub_path;
     public $runcmd = 'docker ps';
+    public $vulhub_path;
+    public function __construct($path)
+    {
+        $this->vulhub_path = $path;
+    }
+
+
     public function checkrun($testname)
     {
         $testname = preg_replace('/CVE/', 'cve', $testname);
@@ -24,9 +29,9 @@ class Docker
             return false;
         }
     }
-    public function start_contain($path, $name,$vulhub_path=$this->vulhub_path)
+    public function start_contain($path, $name)
     {
-        $cmd = "cd $vulhub_path/$path/" . $name . ";sudo  docker-compose build;sudo docker-compose up -d";
+        $cmd = "cd $this->vulhub_path/$path/" . $name . ";sudo  docker-compose build;sudo docker-compose up -d";
         $output = shell_exec($cmd . ' 2>&1');
         $realname = preg_replace('/CVE/', 'cve', $name);
         if (!preg_match("/$realname/", $output)) {
@@ -43,16 +48,23 @@ class Docker
         }
         return $matches;
     }
-    public function stop_contain($path, $name,$vulhub_path = $this->vulhub_path)
+    public function stop_contain($path, $name)
     {
-        $cmd = "cd $vulhub_path/$path/" . $name . ';sudo docker-compose down -v';
+        $cmd = "cd $this->vulhub_path/$path/" . $name . ';sudo docker-compose down -v';
         $output = shell_exec($cmd . ' 2>&1');
         return preg_match("/WARNING/", $output);
     }
 }
-$passwd = 'root';
-$db = 'vulhub';
-$con = mysqli_connect('127.0.0.1', 'root', $passwd, $db);
+$con = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+if (mysqli_connect_errno()) {
+    if (mysqli_connect(DB_HOST, DB_USER, DB_PASS)) {
+        echo "数据库连接错误";
+        die();
+    } else {
+        $con = setupdb();
+    }
+}
 
 //根据id查询值
 function query_time($con, $id, $name = 'kali')
@@ -111,22 +123,23 @@ function del($con, $id)
     $sql = 'delete from timer where id=' . $id;
     return mysqli_query($con, $sql);
 }
-
-// if (isset($_COOKIE['token'])) {
-//     if ($_COOKIE['token'] != $_SESSION['token']) {
-//         $data['status'] = 'hacker!';
-//         token();
-//         http_response_code(500);
-//         echo json_encode($data);
-//         exit();
-//     }
-// } else {
-//     token();
-//     header('Location: http://192.168.120.128/vm-share/vulhub.php');
-//     exit();
-// }
-
-$docker = new Docker();
+if ($wad) {
+    if (isset($_COOKIE['token'])) {
+        if ($_COOKIE['token'] != $_SESSION['token']) {
+            $data['status'] = 'hacker!';
+            token();
+            http_response_code(500);
+            echo json_encode($data);
+            exit();
+        }
+    } else {
+        token();
+        header("Location: http://$ip/$web_path" . "$index");
+        exit();
+    }
+}
+global $docker;
+$docker = new Docker($vulhub_path);
 // 定义一个函数，用于启动靶场
 function start_challenge($challenge, $time, $name, $path, $check = false)
 {

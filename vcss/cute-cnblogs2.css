@@ -829,9 +829,9 @@ div#home::after {
     z-index: -1
 }
 
-div#home::after {
+/* div#home::after {
     background-image: url(https://api.imacroc.cn/acg/)
-}
+} */
 
 .container {
     width: 100%;

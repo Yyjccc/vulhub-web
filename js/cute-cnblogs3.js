@@ -29,7 +29,7 @@ function light_white() {
         var script = document.createElement("script");
         script.type = "text/javascript";
         script.id = "fish_type";
-        script.src = "https://blog-static.cnblogs.com/files/miluluyo/fish.js";
+        script.src = "./js/fish.js";
         document.body.appendChild(script)
     }
 }
@@ -46,7 +46,7 @@ function furvous() {
         var script = document.createElement("script");
         script.type = "text/javascript";
         script.id = "fish_type";
-        script.src = "https://blog-static.cnblogs.com/files/miluluyo/fish2.js";
+        script.src = "./js/fish2.js";
         document.body.appendChild(script)
     }
 }
