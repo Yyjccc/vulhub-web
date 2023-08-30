@@ -1,5 +1,6 @@
 <?php
 include("config.php");
+include("setup.php");
 $data = array('code' => '500', 'status' => 'erro');
 session_start();
 function token()
